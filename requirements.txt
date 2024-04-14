@@ -1,0 +1,6 @@
+scipy
+scikit-learn
+pandas
+datetime
+requests
+python-dotenv
