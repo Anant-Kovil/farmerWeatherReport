@@ -7,6 +7,10 @@ import requests
 import streamlit as st
 from dotenv import load_dotenv
 import os
+import streamlit as st
+from streamlit_folium import st_folium
+import folium
+
 load_dotenv()
 
 brazil = os.getenv('brazil')
@@ -21,6 +25,24 @@ option = st.selectbox(
 st.write('You selected:', option)
 
 if (option == "Custom"):
+  DEFAULT_LATITUDE = 51.
+  DEFAULT_LONGITUDE = 3.
+
+
+  m = folium.Map(location=[DEFAULT_LATITUDE, DEFAULT_LONGITUDE], zoom_start=10)
+
+  # The code below will be responsible for displaying 
+  # the popup with the latitude and longitude shown
+  m.add_child(folium.LatLngPopup())
+
+  f_map = st_folium(m, width=725)
+
+  selected_latitude = DEFAULT_LATITUDE
+  selected_longitude = DEFAULT_LONGITUDE
+
+  if f_map.get("last_clicked"):
+      selected_latitude = f_map["last_clicked"]["lat"]
+      selected_longitude = f_map["last_clicked"]["lng"]
   custom_lat = st.text_input("latitude", value=0.0)
   custom_long = st.text_input("longitude", value=0.0)
 
