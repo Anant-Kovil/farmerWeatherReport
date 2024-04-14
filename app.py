@@ -10,8 +10,9 @@ import os
 import streamlit as st
 from streamlit_folium import st_folium
 import folium
-
 load_dotenv()
+
+st.title("AI Powered Weather Forecasting App for Farmers")
 
 brazil = os.getenv('brazil')
 iowa = os.getenv('iowa')
@@ -22,12 +23,12 @@ option = st.selectbox(
    index=None,
    placeholder="Select location...",
 )
+
 st.write('You selected:', option)
 
 if (option == "Custom"):
   DEFAULT_LATITUDE = 51.
   DEFAULT_LONGITUDE = 3.
-
 
   m = folium.Map(location=[DEFAULT_LATITUDE, DEFAULT_LONGITUDE], zoom_start=10)
 
