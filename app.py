@@ -14,14 +14,15 @@ iowa = os.getenv('iowa')
 
 option = st.selectbox(
    "Which Farm Location?",
-   ("Brazil", "Iowa"),
+   ("Brazil", "Iowa", "Custom"),
    index=None,
    placeholder="Select location...",
 )
 st.write('You selected:', option)
 
-custom_lat = st.text_input("latitude", value=0.0)
-custom_long = st.text_input("longitude", value=0.0)
+if (option == "Custom"):
+  custom_lat = st.text_input("latitude", value=0.0)
+  custom_long = st.text_input("longitude", value=0.0)
 
 
 def main(api_url):
@@ -67,6 +68,5 @@ if st.button('Get Weather Report'):
     st.write(main(brazil))
   elif (option == "Iowa"):
     st.write(main(iowa))
-
-if st.button('Get Weather Report for Custom Location'):
-  st.write(main_custom_location(custom_lat, custom_long))
+  elif (option == "Custom"):
+    st.write(main_custom_location(custom_lat, custom_long))
