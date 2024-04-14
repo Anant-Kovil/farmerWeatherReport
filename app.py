@@ -18,8 +18,11 @@ option = st.selectbox(
    index=None,
    placeholder="Select location...",
 )
-
 st.write('You selected:', option)
+
+custom_lat = st.text_input("latitude", value=0.0)
+custom_long = st.text_input("longitude", value=0.0)
+
 
 def main(api_url):
   response = requests.get(api_url)
@@ -56,9 +59,14 @@ def main(api_url):
   final_report = " ".join(reports)
   return final_report
 
+def main_custom_location(lat, lon):
+  main(f"https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={os.getenv('api')}")
+
 if st.button('Get Weather Report'):
   if (option == "Brazil"):
     st.write(main(brazil))
   elif (option == "Iowa"):
     st.write(main(iowa))
 
+if st.button('Get Weather Report for Custom Location'):
+  st.write(main_custom_location(custom_lat, custom_long))
