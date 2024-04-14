@@ -61,7 +61,7 @@ def main(api_url):
   return final_report
 
 def main_custom_location(lat, lon):
-  main(f"https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={os.getenv('api')}")
+  main(f"https://api.agromonitoring.com/agro/1.0/weather/forecast?lat={lat}&lon={lon}&appid={os.getenv('api')}")
 
 if st.button('Get Weather Report'):
   if (option == "Brazil"):
